@@ -190,9 +190,7 @@ func Do() {
 	optUser := flag.String("username", "root", "Username")
 	optPass := flag.String("password", os.Getenv("MYSQL_PASSWORD"), "Password")
 	optTempfile := flag.String("tempfile", "", "Temp file name")
-	optInnoDB := flag.Bool("disable_innodb", false, "Disable InnoDB metrics")
 	optMetricKeyPrefix := flag.String("metric-key-prefix", "mysql-extend", "metric key prefix")
-	optEnableExtended := flag.Bool("enable_extended", false, "Enable Extended metrics")
 	optDebug := flag.Bool("debug", false, "Print debugging logs to stderr")
 	flag.Parse()
 
@@ -206,9 +204,7 @@ func Do() {
 	}
 	mysql.Username = *optUser
 	mysql.Password = *optPass
-	mysql.DisableInnoDB = *optInnoDB
 	mysql.prefix = *optMetricKeyPrefix
-	mysql.EnableExtended = *optEnableExtended
 	mysql.Debug = *optDebug
 	helper := mp.NewMackerelPlugin(&mysql)
 	helper.Tempfile = *optTempfile
